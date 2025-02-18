@@ -1,0 +1,41 @@
+.itemList{
+    background-color: aqua;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 120px 120px 120px 120px 120px;
+}
+
+.mainContent{
+    background-color: blueviolet;
+}
+
+button{
+    border: none;
+}
+
+
+
+@media only screen  and (max-width:450px) {
+    .itemList {
+            background-color: rgb(37, 248, 100);
+            list-style: none;
+            grid-template-columns: 120px 120px;
+        }
+        .mainDiv{
+            display: grid;
+            grid-template-columns: 120px 120px;
+        }
+        .itemDrop span {
+            background-color: rgb(51, 118, 118);
+                height: 10px;
+                width: 30px;
+                margin: 2px;
+                border-radius: 3px;
+        }
+        .itemDrop{
+            display: grid;
+        }
+        .mainContent {
+            background-color: rgb(43, 226, 208);
+        }
+}

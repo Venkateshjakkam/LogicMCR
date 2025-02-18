@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Background Color</title>
+    <style>
+        body {
+            text-align: center;
+            /* transition: background-color 0.5s; */
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="green">
+    <button onclick="toggleColor()">Toggle Background</button>
+    <script>
+        function toggleColor() {
+            document.body.classList.toggle('green');
+            document.body.classList.toggle('red');
+        }
+    </script>
+</body>
+
+</html>
+
+<!-- <!DOCTYPE html>
+<link>
+    <link>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,  initial-scale=1.0">
+        <title>NAV BAR</title>
+        <link href="index.css" rel="stylesheet"></link>
+       
+    </head>
+    <body>
+        
+        <nav>
+            <div class="mainDiv">
+                <ul class="itemList">
+                    <li> <button>Home</button></li>
+                    <li><button>About</button></li>
+                    <li><button>User</button></li>
+                    <li><button>User</button></li>
+                    <li><button>Contact</button></li>
+                </ul>
+            </div>
+            <div class="hiddenDiv">
+            <div class="itemDrop" onclick="toggle()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            </div>
+        </nav>
+
+        <main class="mainContent">
+            <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                Placeat saepe similique iure rem ipsam corrupti reprehenderit ipsum fuga quia, 
+                quas delectus ducimus voluptatem reiciendis culpa! Facere eaque veritatis id soluta!</div>
+        </main>
+        <script src="index.js"></script>
+    </body>
+</html> -->
