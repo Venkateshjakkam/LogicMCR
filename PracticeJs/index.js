@@ -371,26 +371,127 @@
 
 /////////////////////------------------ BinarySearch---------------//////
 
-function binarySearch(arr, target) {
-    let left = 0;
-    let right = arr.length - 1;
+// function binarySearch(arr, target) {
+//     let left = 0;
+//     let right = arr.length - 1;
     
-    while (left <= right) {
-        let mid = Math.floor((left + right) / 2);
+//     while (left <= right) {
+//         let mid = Math.floor((left + right) / 2);
         
-        if (arr[mid] === target) {
-            return mid; 
-        } else if (arr[mid] < target) {
-            left = mid + 1; 
-        } else {
-            right = mid - 1; 
-        }
-    }
-    
-    return -1; 
+//         if (arr[mid] === target) {
+//             return mid; 
+//         } else if (arr[mid] < target) {
+//             left = mid + 1; 
+//         } else {
+//             right = mid - 1; 
+//         }
+//     }
+//     return -1; 
+// }
+// let arr = [1, 3, 5, 7, 9, 11];
+// console.log(binarySearch(arr, 5)); 
+// console.log(binarySearch(arr, 6)); 
+
+
+
+////////////////////////---------Range------------------//////////////////
+
+// function* rangeArr(from,to){
+//     for(let i = from; i <= to; i++){
+//         yield i;
+//     }
+// }
+
+// for(let num of rangeArr(1,4)){
+// console.log(num);
+// }
+
+
+//////////////////------------------Element Right Before First Appearance------------------////////////////////
+
+// let arr1 = [1,1,3,4,5,3,7,8,2,5,6,7];
+
+// function uniqArr(arr1,target){
+//     let outPut = [];
+//     let result = [];
+//         for(let i=0; i<=arr1.length-1; i++){
+//             for(let j=i+1; j<arr1.length; j++){
+//                 if(arr1[i]< arr1[j]){
+//                     temp = arr1[i];
+//                     arr1[i] = arr1[j];
+//                     arr1[j] = temp
+//                 }
+//             } 
+//         }
+
+//         for(let i=0; i <= arr1.length-1; i++){
+//             if(arr1[i] !== arr1[i+1]){
+//                 outPut.push(arr1[i])
+//             }
+//         }
+
+//         for(let i=0; i<= outPut.length-1; i++){
+//             if(outPut[i] === target){
+//                 result.push(outPut[i])
+//             }
+//         }
+
+//         return result.toString();
+// }
+// console.log(uniqArr(arr1,1));
+
+
+
+
+// ///////////////////--------Last Index Target Number.-------///////////////
+// let arr1 = [1,1,3,4,5,3,7,8,2,5,6,1,7];
+
+// function uniqArr(arr1,target){
+   
+//     let result = [];
+       
+//         for(let i=0; i <= arr1.length-1; i++){
+//             if(arr1[i] === target){
+//                 result.push(i);
+//             }
+//         }
+//         return result.length>0 ? result[result.length-1]: -1;
+// }
+// console.log(uniqArr(arr1,5));
+
+
+
+/////////////-----------Convert Numbers to Roman Number -----///////////////////////
+
+// Symbol	I	V	X	L	C	D	M
+// Value	1	5	10	50	100	500	1000
+
+
+
+let symbol = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000
 }
 
+function getValue(symbol,target){
+        let total = 0;
 
-let arr = [1, 3, 5, 7, 9, 11];
-console.log(binarySearch(arr, 5)); 
-console.log(binarySearch(arr, 6)); 
+      for(let i=0; i < target.length; i++){
+        let current = symbol[target[i]];
+        let next = symbol[target[i+1]];
+        // console.log(current,next)
+        if(next > current){
+              total -= current;
+        } else { 
+             total += current;
+        }
+     }
+
+     return total;
+}
+console.log(getValue(symbol, "IX"));
