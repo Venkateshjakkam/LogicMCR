@@ -468,30 +468,109 @@
 
 
 
-let symbol = {
-    I: 1,
-    V: 5,
-    X: 10,
-    L: 50,
-    C: 100,
-    D: 500,
-    M: 1000
+// var symbol = {
+//     M: 1000,
+//     CM: 900,
+//     D: 500,
+//     CD: 400,
+//     C: 100,
+//     XC: 90,
+//     L: 50,
+//     XL: 40,
+//     X: 10,
+//     IX: 9,
+//     V: 5,
+//     IV: 4,
+//     I: 1
+// };
+
+// function getRoman(target) {
+//     let result = '';
+
+//     for (let key in symbol) {
+//         while (target >= symbol[key]) {
+//             result += key;
+//             target -= symbol[key]; 
+//         }
+//     }
+//     return result;
+// }
+
+// console.log(getRoman(143)); 
+// console.log(getRoman(3999)); 
+// console.log(getRoman(58)); 
+
+
+
+/////////////////////////--------- Example----2///////////////////////////////////
+// function getValue(symbol,target){
+//         let total = 0;
+
+//       for(let i=0; i < target.length; i++){
+//         let current = symbol[target[i]];
+//         let next = symbol[target[i+1]];
+//         // console.log(current,next)
+//         if(next > current){
+//               total -= current;
+//         } else { 
+//              total += current;
+//         }
+//      }
+
+//      return total;
+// }
+// console.log(getValue(symbol, "IX"));
+
+
+
+///////////////---------- Find the largest difference-----////////////
+
+
+// let arr1 = [-1,2,5,-9,8,18];
+
+// function largestDiff(arr1){
+//     let result = [];
+//     for(let i=0; i<=arr1.length-1; i++){
+//        for(let j=i+1; j<=arr1.length-1; j++){
+//        let newResult = arr1[i] - arr1[j];
+//       let newArr =  Math.abs(newResult);
+//        result.push(newArr);
+//        }
+//     }
+//      let outPut = result.sort((a,b)=> a-b);
+//     let nx = outPut.length;
+//     // console.log(nx-1,nx);
+//     return outPut[nx-1] ;
+// }
+// console.log(largestDiff(arr1));
+
+/////////////////--------- Integer not occuraing twice ---------////////////////
+// for(let j=i+1; j<=arr4.length-1; j++){
+//          if(arr4[i] === arr4[j]){
+//             result.push(arr4[i]);
+//         }
+// }
+
+let arr = [10,1,3,0,10,2,3,0];
+function findSingle(arr) {
+    let result = 0;
+    for (let num of arr) {
+        result ^= num; // XOR each number
+    }
+    return result;
 }
+console.log(findSingle(arr)); 
 
-function getValue(symbol,target){
-        let total = 0;
 
-      for(let i=0; i < target.length; i++){
-        let current = symbol[target[i]];
-        let next = symbol[target[i+1]];
-        // console.log(current,next)
-        if(next > current){
-              total -= current;
-        } else { 
-             total += current;
-        }
-     }
-
-     return total;
-}
-console.log(getValue(symbol, "IX"));
+// function numOcurr(arr4){
+//     let result = [];
+//     for(let i=0; i<=arr4.length-1; i++){
+//        for(let j=i+1; j<=arr4.length-1; j++){
+//                  if(arr4[i] === arr4[j]){
+//                     result.push(arr4[i]);
+//                 }
+//         }
+//        }
+//     return result;
+// }
+// console.log(numOcurr(arr4));
