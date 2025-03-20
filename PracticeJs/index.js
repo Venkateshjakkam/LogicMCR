@@ -734,23 +734,170 @@
 // console.log(arrElem([1, 2, 3, 4, 5], [3, 2, 1, 6, 7, 8, 10, 12]));
 
 /////////////////////////----------------- example-----------3/////////////////////////////////////
-function intersect(arr1, arr2) {
-  let i = 0,
-    j = 0;
-  let result = [];
 
-  while (i < arr1.length && j < arr2.length) {
-    if (arr1[i] < arr2[j]) {
-      i++;
-    } else if (arr1[i] > arr2[j]) {
-      j++;
-    } else {
-      result.push(arr1[i]);
-      i++;
-      j++;
-    }
+// function intersect(arr1, arr2) {
+//   let i = 0,
+//     j = 0;
+//   let result = [];
+
+//   while (i < arr1.length && j < arr2.length) {
+//     if (arr1[i] < arr2[j]) {
+//       i++;
+//     } else if (arr1[i] > arr2[j]) {
+//       j++;
+//     } else {
+//       result.push(arr1[i]);
+//       i++;
+//       j++;
+//     }
+//   }
+
+//   return result;
+// }
+// console.log(intersect([1, 2, 3, 4, 5], [3, 2, 1, 6, 7, 8, 10, 12]));
+
+// ////////////////////Example ----3 Generate the random color---/////////////////
+
+// function getGetHEXColorCode() {
+//   const rValue = Math.round(0xff * Math.random())
+//     .toString(16)
+//     .padStart(2, "0");
+//   const gValue = Math.round(0xff * Math.random())
+//     .toString(16)
+//     .padStart(2, "0");
+//   const bValue = Math.round(0xff * Math.random())
+//     .toString(16)
+//     .padStart(2, "0");
+//   return "#" + rValue + gValue + bValue;
+// }
+
+// console.log(getGetHEXColorCode());
+
+////////////////////------------slice the string------- Example-4--------//////////////////////////////////
+
+// function strOccur(str, len) {
+//   let i = 0;
+//   let strLength = 0;
+//   let result = [];
+
+//   while (i < str.length) {
+//     result.push(str[i]);
+//     strLength++;
+//     i++;
+//   }
+//   let output2 = result.slice(len).join("").toString();
+//   let output1 = result.slice(0, len).join("").toString();
+
+//   return output1 + " " + output2;
+// }
+
+// console.log("String Length:", strOccur("javascript", 2));
+// console.log(strOccur("JavaScript", 3));
+// console.log(strOccur("JavaScript", 8));
+
+//////////////////////---------Example--5////////////////////////////
+
+// function strInc(str, target) {
+//   let newStr = str.toLowerCase().includes(target.toLowerCase());
+//   return newStr;
+// }
+// console.log(strInc("JAVASCRIPT", "pt"));
+
+// ////////////------------------Example--6------------/////////////////////
+
+// function findNum(arr) {
+//   let result = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     for (let j = 0; j < arr[i].length; j++) {
+//       if (!isNaN(arr[i][j]) && arr[i][j] !== " ") {
+//         result.push(arr[i]);
+//         break;
+//       }
+//     }
+//   }
+//   return result;
+// }
+// console.log(findNum(["a1", "b2", "c3", "d4", "e5", "aa", "mja", "king"]));
+
+// ///////////////////Example-----7/////////////////////////////
+
+// function telNum(phone) {
+//   if (phone.length === 10) {
+//     console.log(true);
+//   } else if (phone.includes(+91) && phone.length > 13) {
+//     console.log(true);
+//   } else {
+//     console.log(false);
+//   }
+//   console.log(phone.length);
+
+//   return "";
+// }
+// console.log(telNum("7337432531"));
+// console.log(telNum("+917337456431"));
+// console.log(telNum("733743251"));
+// console.log(telNum("+9173374596431"));
+
+////////////////////////////-------------------Example-8--------------------////////////////////////////////
+
+// const lear = "Javascript is a tipical languae and easy to learn";
+// const len = 2;
+// const result = lear.split(" ").slice(0, len);
+// console.log(result);
+
+// ////example-9//////////////////////////////////////////
+// function truncateString(str, charCount) {
+//   if (str.length > charCount) {
+//     return str.substring(0, charCount - 3);
+//   } else {
+//     return str;
+//   }
+// }
+
+// console.log(truncateString("javascrit is a library", 9));
+
+///example--10///////////////////////
+// function truncateString(str, charCount) {
+//   if (str.length > charCount) {
+//     return str.slice(0, charCount - 3) + "...";
+//   } else {
+//     return str;
+//   }
+// }
+
+// console.log(truncateString("JavaScript", 7));
+// console.log(truncateString("JS is fun", 10));
+// console.log(truncateString("JS is funny", 10));
+
+// const num = Math.round(Math.random() * 10);
+// const ran = Math.ceil(5.3333);
+// const rn = Math.floor(5.3333);
+// const arr = [1, -100, 20, 30, 190, 10, -90, -40];
+// const maxi = Math.min(...arr);
+// const result = Math.abs(-90.89);
+// console.log(maxi, result);
+// console.log(ran, rn);
+
+//////////////////// example----1///////////////////////
+// function reverseStr() {
+//   let str = "I am learning javascript";
+//   let i = str.length - 1;
+//   let reversed = "";
+//   while (i >= 0) {
+//     reversed += str[i];
+//     i--;
+//   }
+//   return reversed;
+// }
+
+console.log(reverseStr());
+
+function reverseStr() {
+  let str = "I am learning javascript";
+  let reverse = "";
+
+  for (let i = str.length - 1; i >= 0; i--) {
+    reverse += str[i];
   }
-
-  return result;
+  return reverse;
 }
-console.log(intersect([1, 2, 3, 4, 5], [3, 2, 1, 6, 7, 8, 10, 12]));
