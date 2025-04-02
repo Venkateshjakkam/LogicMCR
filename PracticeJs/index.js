@@ -890,14 +890,131 @@
 //   return reversed;
 // }
 
-console.log(reverseStr());
+////////////////////////////-------Example-2A------///////////////////////////////////
 
-function reverseStr() {
-  let str = "I am learning javascript";
-  let reverse = "";
+// console.log(reverseStr());
 
-  for (let i = str.length - 1; i >= 0; i--) {
-    reverse += str[i];
-  }
-  return reverse;
-}
+// function reverseStr() {
+//   let str = "I am learning javascript";
+//   let reverse = "";
+
+//   for (let i = str.length - 1; i >= 0; i--) {
+//     reverse += str[i];
+//   }
+//   return reverse;
+// }
+
+//////////////---------- Reverse Number ---------//////////////////
+// function bgNum() {
+//   let num = 3849;
+//   let reversedNum = 0;
+//   while (num !== 0) {
+//     reversedNum = reversedNum * 10 + (num % 10);
+//     num = Math.floor(num / 10);
+//   }
+//   console.log(reversedNum);
+//   return reversedNum;
+// }
+// console.log(bgNum());
+//
+////////////////////////------- Example-10------////////////////////////
+
+// function getTheGapX(str) {
+//   if (!str.includes("X")) {
+//     return -1;
+//   }
+
+//   const firstIndex = str.indexOf("X");
+//   const lastIndex = str.lastIndexOf("X");
+//   return firstIndex === lastIndex ? -1 : lastIndex - firstIndex;
+// }
+
+// console.log(getTheGapX("jhgtrTXawsd"));
+
+/////////////////////////---------- Example Debouncing --------////////////////////////
+
+// function debounce(fn, delay) {
+//   let timer;
+//   return function (...args) {
+//     if (timer) clearTimeout(timer);
+//     timer = setTimeout(() => {
+//       fn(...args);
+//     }, delay);
+//   };
+// }
+
+// function sayHello() {
+//   console.log("welcome");
+// }
+// const newRes = debounce(sayHello, 1000);
+// console.log(newRes());
+
+//////////////////----=----- Throtelling Example----=-----///////////////////////////
+// function throttle(fn, delay) {
+//   let lastExecuted = 0;
+//   return function (...args) {
+//     const now = Date.now();
+//     if (now - lastExecuted >= delay) {
+//       fn(...args);
+//       lastExecuted = now;
+//     }
+//     console.log("New date.now:-", now);
+//   };
+// }
+
+// function onClick() {
+//   console.log("new throttle called as!");
+// }
+// const throttledClick = throttle(onClick, 2000);
+
+// console.log(throttledClick());
+
+//////////////////----=----- Currying Example----=-----///////////////////////////
+// function currry(a) {
+//   return function (b) {
+//     return function (c) {
+//       console.log(a, b, c);
+//       return a + b + c;
+//     };
+//   };
+// }
+// console.log(currry(2)(3)(4));
+
+//////////--------------------------Example of Promise.all() protorype-------------//////////////
+
+Promise.myAll = function (promises) {
+  return new Promise((resolve, reject) => {
+    if (!Array.isArray(promises)) {
+      return reject(new TypeError("Argument must be an array"));
+    }
+    let results = [];
+    let completedPromises = 0;
+    if (promises.length === 0) {
+      return resolve([]);
+    }
+    promises.forEach((promise, index) => {
+      Promise.resolve(promise)
+        .then((value) => {
+          results[index] = value;
+          completedPromises++;
+          if (completedPromises === promises.length) {
+            resolve(results);
+          }
+        })
+        .catch((error) => reject(error));
+    });
+  });
+};
+
+const p1 = Promise.resolve(10);
+const p2 = Promise.resolve(20);
+const p3 = new Promise((resolve) => setTimeout(() => resolve(30), 1000));
+
+Promise.myAll([p1, p2, p3])
+  .then((result) => console.log("Resolved:", result))
+  .catch((error) => console.log("Rejected:", error));
+
+const p4 = Promise.reject("Error!");
+Promise.myAll([p1, p4, p3])
+  .then((result) => console.log("Resolved:", result))
+  .catch((error) => console.log("Rejected:", error));
