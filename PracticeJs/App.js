@@ -649,105 +649,183 @@
 // console.log(equalizeArray([1, 2, 2, 4]));
 
 ////////////----------- queensAttack -------------////////////
-function queensAttack(n, k, r_q, c_q, obstacles) {
-  const directions = [
-    { dr: 1, dc: 0 },
-    { dr: -1, dc: 0 },
-    { dr: 0, dc: -1 },
-    { dr: 0, dc: 1 },
-    { dr: 1, dc: -1 },
-    { dr: 1, dc: 1 },
-    { dr: -1, dc: -1 },
-    { dr: -1, dc: 1 },
-  ];
+// function queensAttack(n, k, r_q, c_q, obstacles) {
+//   const directions = [
+//     { dr: 1, dc: 0 },
+//     { dr: -1, dc: 0 },
+//     { dr: 0, dc: -1 },
+//     { dr: 0, dc: 1 },
+//     { dr: 1, dc: -1 },
+//     { dr: 1, dc: 1 },
+//     { dr: -1, dc: -1 },
+//     { dr: -1, dc: 1 },
+//   ];
 
-  const closestObstacles = {};
-  for (const dir of directions) {
-    closestObstacles[`${dir.dr},${dir.dc}`] = null;
-  }
+//   const closestObstacles = {};
+//   for (const dir of directions) {
+//     closestObstacles[`${dir.dr},${dir.dc}`] = null;
+//   }
 
-  for (const [r, c] of obstacles) {
-    const dr = r - r_q;
-    const dc = c - c_q;
+//   for (const [r, c] of obstacles) {
+//     const dr = r - r_q;
+//     const dc = c - c_q;
 
-    if (dr === 0 || dc === 0 || Math.abs(dr) === Math.abs(dc)) {
-      let dirDr, dirDc;
-      if (dr === 0) {
-        dirDr = 0;
-        dirDc = dc > 0 ? 1 : -1;
-      } else if (dc === 0) {
-        dirDr = dr > 0 ? 1 : -1;
-        dirDc = 0;
-      } else {
-        dirDr = dr > 0 ? 1 : -1;
-        dirDc = dc > 0 ? 1 : -1;
-      }
+//     if (dr === 0 || dc === 0 || Math.abs(dr) === Math.abs(dc)) {
+//       let dirDr, dirDc;
+//       if (dr === 0) {
+//         dirDr = 0;
+//         dirDc = dc > 0 ? 1 : -1;
+//       } else if (dc === 0) {
+//         dirDr = dr > 0 ? 1 : -1;
+//         dirDc = 0;
+//       } else {
+//         dirDr = dr > 0 ? 1 : -1;
+//         dirDc = dc > 0 ? 1 : -1;
+//       }
 
-      const key = `${dirDr},${dirDc}`;
-      const distance = Math.max(Math.abs(dr), Math.abs(dc));
+//       const key = `${dirDr},${dirDc}`;
+//       const distance = Math.max(Math.abs(dr), Math.abs(dc));
 
-      if (!closestObstacles[key] || distance < closestObstacles[key].distance) {
-        closestObstacles[key] = { distance, r, c };
-      }
+//       if (!closestObstacles[key] || distance < closestObstacles[key].distance) {
+//         closestObstacles[key] = { distance, r, c };
+//       }
+//     }
+//   }
+
+//   let total = 0;
+
+//   for (const dir of directions) {
+//     const key = `${dir.dr},${dir.dc}`;
+//     const obstacle = closestObstacles[key];
+
+//     let maxDistance;
+//     if (dir.dr === 0) {
+//       if (dir.dc === 1) {
+//         maxDistance = n - c_q;
+//       } else {
+//         maxDistance = c_q - 1;
+//       }
+//     } else if (dir.dc === 0) {
+//       if (dir.dr === 1) {
+//         maxDistance = n - r_q;
+//       } else {
+//         maxDistance = r_q - 1;
+//       }
+//     } else {
+//       if (dir.dr === 1 && dir.dc === 1) {
+//         maxDistance = Math.min(n - r_q, n - c_q);
+//       } else if (dir.dr === 1 && dir.dc === -1) {
+//         maxDistance = Math.min(n - r_q, c_q - 1);
+//       } else if (dir.dr === -1 && dir.dc === 1) {
+//         maxDistance = Math.min(r_q - 1, n - c_q);
+//       } else {
+//         maxDistance = Math.min(r_q - 1, c_q - 1);
+//       }
+//     }
+
+//     if (obstacle) {
+//       const obstacleDistance = Math.max(
+//         Math.abs(obstacle.r - r_q),
+//         Math.abs(obstacle.c - c_q)
+//       );
+//       total += obstacleDistance - 1;
+//     } else {
+//       total += maxDistance;
+//     }
+//   }
+
+//   return total;
+// }
+
+// console.log(queensAttack(4, 0, 4, 4, []));
+
+// console.log(
+//   queensAttack(5, 3, 4, 3, [
+//     [5, 5],
+//     [4, 2],
+//     [2, 3],
+//   ])
+// );
+
+// console.log(queensAttack(1, 0, 1, 1, []));
+
+/////////////////<------moveZeroes------->////////////////////////
+// var moveZeroes = function (nums) {
+//   let lastNonZeroIndex = 0;
+
+//   for (let i = 0; i < nums.length; i++) {
+//     if (nums[i] !== 0) {
+//       nums[lastNonZeroIndex++] = nums[i];
+//     }
+//   }
+
+//   for (let i = lastNonZeroIndex; i < nums.length; i++) {
+//     nums[i] = 0;
+//   }
+
+//   return nums;
+// };
+// console.log(moveZeroes([1, 0, 4, 0, 2, 0, 7, 9, 0]));
+
+///////////////////-----TwoSum-----///////////////////
+
+function twoSum(nums, target) {
+  const map = {};
+  for (let i = 0; i < nums.length; i++) {
+    const complement = target - nums[i];
+    if (complement in map) {
+      return [map[complement], i];
     }
+    map[nums[i]] = i;
   }
-
-  let total = 0;
-
-  for (const dir of directions) {
-    const key = `${dir.dr},${dir.dc}`;
-    const obstacle = closestObstacles[key];
-
-    let maxDistance;
-    if (dir.dr === 0) {
-      if (dir.dc === 1) {
-        maxDistance = n - c_q;
-      } else {
-        maxDistance = c_q - 1;
-      }
-    } else if (dir.dc === 0) {
-      if (dir.dr === 1) {
-        maxDistance = n - r_q;
-      } else {
-        maxDistance = r_q - 1;
-      }
-    } else {
-      if (dir.dr === 1 && dir.dc === 1) {
-        maxDistance = Math.min(n - r_q, n - c_q);
-      } else if (dir.dr === 1 && dir.dc === -1) {
-        maxDistance = Math.min(n - r_q, c_q - 1);
-      } else if (dir.dr === -1 && dir.dc === 1) {
-        maxDistance = Math.min(r_q - 1, n - c_q);
-      } else {
-        maxDistance = Math.min(r_q - 1, c_q - 1);
-      }
-    }
-
-    if (obstacle) {
-      const obstacleDistance = Math.max(
-        Math.abs(obstacle.r - r_q),
-        Math.abs(obstacle.c - c_q)
-      );
-      total += obstacleDistance - 1;
-    } else {
-      total += maxDistance;
-    }
-  }
-
-  return total;
+  return map;
 }
 
+console.log(twoSum([-1, 0, 1, 3, 4, 2, 6], 8));
 
-console.log(queensAttack(4, 0, 4, 4, [])); 
+//////////<---------unique quadruplets--------->//////////////
 
+// const uniqueQuadruplets = (nums, target) => {
+//   nums.sort((a, b) => a - b);
+//   const res = [];
+//   const n = nums.length;
 
-console.log(
-  queensAttack(5, 3, 4, 3, [
-    [5, 5],
-    [4, 2],
-    [2, 3],
-  ])
-); 
+//   for (let i = 0; i < n - 3; i++) {
+//     if (i > 0 && nums[i] === nums[i - 1]) continue;
 
+//     for (let j = i + 1; j < n - 2; j++) {
+//       if (j > i + 1 && nums[j] === nums[j - 1]) continue;
 
-console.log(queensAttack(1, 0, 1, 1, []));
+//       let left = j + 1;
+//       let right = n - 1;
+
+//       while (left < right) {
+//         const sum = nums[i] + nums[j] + nums[left] + nums[right];
+
+//         if (sum === target) {
+//           res.push([nums[i], nums[j], nums[left], nums[right]]);
+
+//           while (left < right && nums[left] === nums[left + 1]) left++;
+//           while (left < right && nums[right] === nums[right - 1]) right--;
+
+//           left++;
+//           right--;
+//         } else if (sum < target) {
+//           left++;
+//         } else {
+//           right--;
+//         }
+//       }
+//     }
+//   }
+
+//   return res;
+// };
+
+/////////////<-------------Example-26--------------->//////////
+/////////////<--------Prototype of Filter------------>///////////
+
+function filterPro() {
+  
+}
+console.log(filterPro());
